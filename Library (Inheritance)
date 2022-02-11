@@ -1,0 +1,284 @@
+package my.inheritance;
+import java.util.Scanner;
+
+// Abstract Super Class--> Item
+abstract class Item{    
+	private int IdNum;
+	private String title;
+	private int copies;
+	
+// Getter Setter Method	
+	public int getIdNum() { 
+		return IdNum;
+	}
+	public int setIdNum(int idNum) { 
+		IdNum = idNum;
+		return idNum;
+	}
+	public String getTitle() {   
+		return title;
+	}
+	public String setTitle(String title) {  
+		title = title;
+		return title;
+	}
+	public int getCopies() {  
+		return copies;
+	}
+	public int setCopies(int n) {  
+		copies = n;
+		return n;
+	}
+	
+	// ToString Method
+	public void Tostring() {      
+		System.out.println("ID of book :"+getIdNum()+"Title of book :"+getTitle()+"No.of Copies of book :"+getCopies());
+	}
+	// Print method
+	public void Print() {       
+		System.out.println("ID of book:"+getIdNum());
+		System.out.println("Title :"+getTitle());
+		System.out.println("Number of Copies :"+getCopies());
+	}
+	
+	// CheckIn Method
+	public void checkIn() {      
+		copies=copies+1;
+		System.out.println("Number of copies after Checkin:"+copies);
+		System.out.println();
+		
+	}
+	// CheckOut Method
+	public void checkout() {     
+		copies=copies-1;
+		System.out.println("Number of copies after Checkout:"+copies);
+		System.out.println();
+	}
+	// AddItem Method
+	public void addItem(int id ,String str,int cp) {     
+		setIdNum(id);
+		setTitle(str);
+		setCopies(cp);
+	}
+	
+	// Subclass of Item ---> WrittenItem
+}
+abstract class WrittenItem extends Item{     //Subclass of Item --> WrittemItem
+	private String AuthorName;
+	
+	// Getter and Setter
+	
+	public String getAuthorName() {
+		return AuthorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.AuthorName=authorName;
+		
+	}
+	
+	// AddItem Method
+	public void addItem(int id,String a,int b,String c) {
+		super.addItem(id,a,b);
+		setAuthorName(c);
+	}
+	
+	// Print Method
+	public void Print() {
+		super.Print();
+		System.out.println("Author of Book:"+getAuthorName());
+	}
+}
+
+// Subclass of WrittenItem --> Book 
+class Book extends WrittenItem{
+	
+	// Print Method
+	public void Print() {       //print the data
+		System.out.println("Information of Book:--> ");
+		System.out.println();
+		super.Print();
+	}
+	//CheckIn Method 
+	public void checkIn() {      //check in 
+		super.checkIn();
+	}
+	// Checkout Method
+	public void checkout() {     //checkout
+		super.checkout();
+	}
+	//AddItem Method
+	public void addItem(int id ,String str,int cp,String auth) {     //add the items 
+		super.addItem(id,str, cp ,auth);
+	}
+	// Tostring Method
+	public void Tostring() {      //toString method
+		super.Tostring();
+	}
+}
+
+// Subclass of WrittenItem--> JournalPaper
+
+class JournalPaper extends WrittenItem{
+	private int year;
+	
+	// Getter and Setter
+	
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	// AddItem Method
+	public void addItem(int id,String str,int copies ,String Author,int year) {
+		super.addItem(id, str, copies, Author);
+		setYear(year);
+	}
+	
+	// Print Method
+	public void Print() {       //print the data
+		super.Print();
+		System.out.println("Published Year: "+year);
+		System.out.println();
+	}
+	
+	
+}
+
+abstract class MediaItem extends Item{
+	private int runTime;
+	
+	// Getter and Setter
+	
+	public int getRunTime() {
+		return runTime;
+	}
+
+	public void setRunTime(int runTime) {
+		this.runTime = runTime;
+	}
+	
+	// AddItem Method
+    public void addItem(int a, String b,int c,int d) {
+    	super.addItem(a, b, c);
+    	setRunTime(d);
+    }
+ // Print Method
+    public void Print(){
+    	super.Print();
+    	System.out.println("runtime :"+getRunTime());
+    	System.out.println();
+    	
+    }
+}
+class Video extends MediaItem{
+	private String Director;
+	private String Genre;
+	private int year;
+	
+	// Getter and Setter
+	public String getDirector() {
+		return Director;
+	}
+	public void setDirector(String director) {
+		Director = director;
+	}
+	public String getGenre() {
+		return Genre;
+	}
+	public void setGenre(String genre) {
+		Genre = genre;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
+	// AddItem Method
+	public void  addItem(int a,String b,int c,int d, String e, String f, int g) {
+		super.addItem(a, b, c, d);
+		setDirector(e);
+		setGenre(f);
+		setYear(g);
+	
+	}
+	// Print Method
+	
+	public void Print() {
+		super.Print();
+		System.out.println("Director : "+getDirector());
+		System.out.println("Genre :" + getGenre());
+		System.out.println("Year published : "+getYear());
+		System.out.println();
+	}
+}
+class CD extends MediaItem{
+	private String artist;
+	private String Genre;
+	
+	// Getter and Setter
+	public String getArtist() {
+		return artist;
+	}
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+	public String getGenre() {
+		return Genre;
+	}
+	public void setGenre(String genre) {
+		Genre = genre;
+	}
+	// AddItem Method
+	public void  addItem(int a,String b,int c,int d, String e, String f) {
+		super.addItem(a, b, c, d);
+		setArtist(e);
+		setGenre(f);
+	}
+	
+	// Print Method
+	public void Print() {
+		super.Print();
+		System.out.println("Artist : "+getArtist());
+		System.out.println("Genre : " + getGenre());
+		
+	}
+}
+public class inheritance extends Book {
+	public static void main(String[] args) {
+		Book B = new Book();
+		JournalPaper J = new JournalPaper();
+		Video V = new Video();
+		CD C = new CD();
+		
+		//B.Tostring();
+		B.addItem(101, "Art of Gallery", 20);
+		B.Print();
+		B.checkIn();
+		B.Print();
+		B.checkout();
+		B.Print();
+		
+		J.addItem(102, "Love of Life", 20, "Niharika", 2000);
+		J.Print();
+		
+		V.addItem(103,"Story of my life",4, 40,"Dr MS", "Romance",1999);
+		V.Print();
+		
+		C.addItem(104,"God is Great", 10, 60, "Manish Rajput", "Comedy");
+		C.Print();
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
